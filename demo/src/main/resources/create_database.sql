@@ -1,0 +1,20 @@
+CREATE TABLE album(
+    id INT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE song(
+    id INT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE album_song(
+    id INT GENERATED ALWAYS AS IDENTITY,
+    song_id INT,
+    album_id INT,
+    PRIMARY KEY(id),
+    CONSTRAINT fk_song_id FOREIGN KEY(song_id) REFERENCES song(id),
+    CONSTRAINT fk_album_id FOREIGN KEY(album_id) REFERENCES album(id)
+    ON DELETE SET NULL);
